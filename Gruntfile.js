@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 		concat: {
 			basic_and_extras: {
 				files: {
-					'dist/ld33.js': [
+					'dist/compiled/ld33.js': [
 						'src/main.js',
 						'src/*.js'
 					]
