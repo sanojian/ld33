@@ -18,6 +18,9 @@ UnitAuto.prototype.constructor = UnitAuto;
 
 UnitAuto.prototype.update = function() {
 
+	if (!this.alive) {
+		return;
+	}
 	if (this.actions[this.actionCounter] & 4) {
 		this.runDirection(1);
 	}

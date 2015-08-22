@@ -191,6 +191,9 @@ UnitAuto.prototype.constructor = UnitAuto;
 
 UnitAuto.prototype.update = function() {
 
+	if (!this.alive) {
+		return;
+	}
 	if (this.actions[this.actionCounter] & 4) {
 		this.runDirection(1);
 	}
@@ -268,7 +271,7 @@ GameState.prototype.create = function() {
 	g_game.enemyBullets.setAll('outOfBoundsKill', true);
 
 	var self = this;
-	setTimeout(function() {
+	setInterval(function() {
 		g_game.enemyUnits.add(new UnitAuto(self.game, 4 * 48, 6 * 48, 'enemy', 'enemy', g_game.player.actions));
 	}, 3000);
 };
