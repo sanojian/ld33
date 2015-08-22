@@ -56,6 +56,6 @@ GameState.prototype.create = function() {
 
 	var self = this;
 	setInterval(function() {
-		g_game.enemyUnits.add(new UnitAuto(self.game, 4 * 48, 6 * 48, 'enemy', 'enemy', g_game.player.actions));
+		g_game.enemyUnits.add(new UnitAuto(self.game, (63-4) * 48, 6 * 48, 'enemy', 'enemy', g_game.player.actions));
 	}, 3000);
 };

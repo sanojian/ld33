@@ -73,9 +73,10 @@ window.g_game = {
 	baseWidth: 16*48,
 	baseHeight: 9*48,
 
-	gravity: 1200,
+	gravity: 1400,
 	hozMove: 160,
-	vertMove: -360,
+	vertMove: -560,
+
 	jumpTimer: 0,
 	shootTimer: 0,
 	JUMP_TIMEOUT: 350,
@@ -99,6 +100,7 @@ var Unit = function (game, cx, cy, spriteName, team) {
 	this.game.physics.enable(this);
 
 	this.body.bounce.y = 0.1;
+	this.body.maxVelocity = 400;
 	this.body.gravity.y = g_game.gravity;
 	this.anchor.setTo(0.5, 1); //so it flips around its middle
 
@@ -194,10 +196,10 @@ UnitAuto.prototype.update = function() {
 	if (!this.alive) {
 		return;
 	}
-	if (this.actions[this.actionCounter] & 4) {
+	if (this.actions[this.actionCounter] & 8) {
 		this.runDirection(1);
 	}
-	else if (this.actions[this.actionCounter] & 8) {
+	else if (this.actions[this.actionCounter] & 4) {
 		this.runDirection(-1);
 	}
 	else {
@@ -272,7 +274,7 @@ GameState.prototype.create = function() {
 
 	var self = this;
 	setInterval(function() {
-		g_game.enemyUnits.add(new UnitAuto(self.game, 4 * 48, 6 * 48, 'enemy', 'enemy', g_game.player.actions));
+		g_game.enemyUnits.add(new UnitAuto(self.game, (63-4) * 48, 6 * 48, 'enemy', 'enemy', g_game.player.actions));
 	}, 3000);
 };
 /**

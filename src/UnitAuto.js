@@ -21,10 +21,10 @@ UnitAuto.prototype.update = function() {
 	if (!this.alive) {
 		return;
 	}
-	if (this.actions[this.actionCounter] & 4) {
+	if (this.actions[this.actionCounter] & 8) {
 		this.runDirection(1);
 	}
-	else if (this.actions[this.actionCounter] & 8) {
+	else if (this.actions[this.actionCounter] & 4) {
 		this.runDirection(-1);
 	}
 	else {

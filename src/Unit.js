@@ -15,6 +15,7 @@ var Unit = function (game, cx, cy, spriteName, team) {
 	this.game.physics.enable(this);
 
 	this.body.bounce.y = 0.1;
+	this.body.maxVelocity = 400;
 	this.body.gravity.y = g_game.gravity;
 	this.anchor.setTo(0.5, 1); //so it flips around its middle
 
