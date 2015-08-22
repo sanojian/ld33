@@ -2,9 +2,9 @@
  * Created by jonas on 2015-08-22.
  */
 
-var UnitAi = function (game, cx, cy, spriteName) {
+var UnitAi = function (game, cx, cy, spriteName, team) {
 
-	Unit.call(this, game, cx, cy, spriteName);
+	Unit.call(this, game, cx, cy, spriteName, team);
 
 	this.mySpeed = g_game.hozMove/2;
 

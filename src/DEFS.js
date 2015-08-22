@@ -4,10 +4,11 @@ window.g_game = {
 	baseHeight: 9*48,
 
 	gravity: 1200,
-	facing: "left",
 	hozMove: 160,
 	vertMove: -360,
 	jumpTimer: 0,
-	shootTimer: 0
+	shootTimer: 0,
+	JUMP_TIMEOUT: 350,
+	SHOOT_TIMEOUT: 550
 
 };
