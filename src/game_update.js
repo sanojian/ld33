@@ -20,23 +20,19 @@ GameState.prototype.update = function() {
 	if (g_game.cursors.left.isDown) {
 		g_game.player.body.velocity.x = -g_game.hozMove;
 
-		if (g_game.facing !== "left") {
-			g_game.facing = "left";
-		}
+		g_game.player.scale.x = -1; //flip sprite
+		g_game.player.animations.play('run', 16, true);
 	}
 	else if (g_game.cursors.right.isDown)
 	{
 		g_game.player.body.velocity.x = g_game.hozMove;
 
-		if (g_game.facing !== "right") {
-			g_game.facing = "right";
-		}
-	}
+		g_game.player.scale.x = 1; //facing default direction
+		g_game.player.animations.play('run', 16, true);
 
-	if (g_game.facing === "left") {
-		g_game.player.frame = 1;
-	} else {
-		g_game.player.frame = 0;
+	}
+	else {
+		g_game.player.animations.stop();
 	}
 
 };

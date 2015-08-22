@@ -73,10 +73,10 @@ window.g_game = {
 	baseWidth: 16*48,
 	baseHeight: 9*48,
 
-	gravity: 600,
+	gravity: 1200,
 	facing: "left",
 	hozMove: 160,
-	vertMove: -260,
+	vertMove: -360,
 	jumpTimer: 0
 
 };
@@ -101,15 +101,14 @@ GameState.prototype.create = function() {
 	// Tell the layer to resize the game 'world' to match its size
 	g_game.layer.resizeWorld();
 
-	g_game.player = this.game.add.sprite(2 * 48, 6 * 48, 'character');
+	g_game.player = this.game.add.sprite(4 * 48, 6 * 48, 'character');
+	g_game.player.animations.add('run');
 
 	this.game.physics.enable(g_game.player);
 
-	// Set the amount of bounce on the physics body of the 'player' sprite
 	g_game.player.body.bounce.y = 0.1;
-
 	g_game.player.body.gravity.y = g_game.gravity;
-
+	g_game.player.anchor.setTo(0.5, 1); //so it flips around its middle
 	this.game.camera.follow(g_game.player);
 
 	g_game.cursors = this.game.input.keyboard.createCursorKeys();
@@ -151,23 +150,19 @@ GameState.prototype.update = function() {
 	if (g_game.cursors.left.isDown) {
 		g_game.player.body.velocity.x = -g_game.hozMove;
 
-		if (g_game.facing !== "left") {
-			g_game.facing = "left";
-		}
+		g_game.player.scale.x = -1; //flip sprite
+		g_game.player.animations.play('run', 16, true);
 	}
 	else if (g_game.cursors.right.isDown)
 	{
 		g_game.player.body.velocity.x = g_game.hozMove;
 
-		if (g_game.facing !== "right") {
-			g_game.facing = "right";
-		}
-	}
+		g_game.player.scale.x = 1; //facing default direction
+		g_game.player.animations.play('run', 16, true);
 
-	if (g_game.facing === "left") {
-		g_game.player.frame = 1;
-	} else {
-		g_game.player.frame = 0;
+	}
+	else {
+		g_game.player.animations.stop();
 	}
 
 };
