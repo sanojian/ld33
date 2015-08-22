@@ -19,17 +19,28 @@ GameState.prototype.create = function() {
 	// Tell the layer to resize the game 'world' to match its size
 	g_game.layer.resizeWorld();
 
-	g_game.player = this.game.add.sprite(4 * 48, 6 * 48, 'character');
-	g_game.player.animations.add('run');
-
-	this.game.physics.enable(g_game.player);
-
-	g_game.player.body.bounce.y = 0.1;
-	g_game.player.body.gravity.y = g_game.gravity;
-	g_game.player.anchor.setTo(0.5, 1); //so it flips around its middle
+	//g_game.player = this.game.add.sprite(4 * 48, 6 * 48, 'character');
+	g_game.friendlyUnits = this.game.add.group();
+	g_game.player = new Unit(this.game, 4 * 48, 6 * 48, 'character');
+	g_game.friendlyUnits.add(g_game.player);
 	this.game.camera.follow(g_game.player);
+
+	g_game.enemyUnits = this.game.add.group();
+	g_game.enemyUnits.add(new UnitAi(this.game, 16 * 48, 6 * 48, 'enemy'));
+	g_game.enemyUnits.add(new UnitAi(this.game, 22 * 48, 6 * 48, 'enemy'));
 
 	g_game.cursors = this.game.input.keyboard.createCursorKeys();
 
 	g_game.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.C);
+
+	//  Create a group
+	g_game.friendlyBullets = this.game.add.group();
+
+	//  Add 20 sprites to it - the 'false' parameter sets them all to dead
+	g_game.friendlyBullets.createMultiple(20, 'bullet', 0, false);
+	this.game.physics.enable(g_game.friendlyBullets);
+	g_game.friendlyBullets.setAll('anchor.x', 0.5);
+	g_game.friendlyBullets.setAll('anchor.y', 0.5);
+	g_game.friendlyBullets.setAll('outOfBoundsKill', true);
+
 };

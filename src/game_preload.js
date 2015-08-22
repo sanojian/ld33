@@ -8,5 +8,8 @@ GameState.prototype.preload = function() {
 
 	this.game.load.image('level', 'assets/level.png');
 
+	this.game.load.image('bullet', 'assets/bullet.png');
+
 	this.game.load.spritesheet('character', 'assets/character.png', 30, 48);
+	this.game.load.spritesheet('enemy', 'assets/enemy.png', 30, 48);
 };

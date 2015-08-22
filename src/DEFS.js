@@ -7,6 +7,7 @@ window.g_game = {
 	facing: "left",
 	hozMove: 160,
 	vertMove: -360,
-	jumpTimer: 0
+	jumpTimer: 0,
+	shootTimer: 0
 
 };

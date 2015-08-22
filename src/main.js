@@ -36,7 +36,7 @@ function init() {
 	var width = navigator.isCocoonJS ? window.innerWidth : g_game.baseWidth;
 	var height = navigator.isCocoonJS ? window.innerHeight : g_game.baseHeight;
 
-	g_game.phaserGame = new Phaser.Game(width, height, Phaser.CANVAS,   '',     null,       false,          false);
+	g_game.phaserGame = new Phaser.Game(width, height, Phaser.AUTO,   '',     null,       false,          false);
 	g_game.phaserGame.state.add('Boot', Boot);
 	g_game.phaserGame.state.add('game', GameState);
 	g_game.phaserGame.state.start('Boot');
